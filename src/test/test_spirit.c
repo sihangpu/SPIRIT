@@ -5,7 +5,7 @@
 #include "../sign.h"
 #include <time.h>
 
-#include "../../../kyber/ref/api.h"
+#include "../kyber/ref/api.h"
 #include "../packing.h"
 #include "../symmetric.h"
 
