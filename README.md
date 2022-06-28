@@ -3,9 +3,9 @@ Toy implementation of SPIRIT
 
 ## Usage
 
-Please make sure you have installed `openssl`, `cmake` and `ninja`, otherwise run the following command to install.
+Please make sure you have installed `cmake` and `ninja`, otherwise run the following command to install.
 ```bash
-brew install cmake ninja openssl
+brew install cmake ninja
 ```
 
 Build the project:
