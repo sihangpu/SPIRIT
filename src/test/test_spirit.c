@@ -192,7 +192,6 @@ static uint8_t OSKGen(const polyveck *t,
   polyveck_reduce(&t1);
   polyveck_invntt_tomont(&t1);
   polyveck_add(&t1, &t1, &s2);
-  polyveck_caddq(&t1);
   polyveck_add(&t1, &t1, t);
   polyveck_reduce(&t1);
   polyveck_caddq(&t1);
@@ -209,7 +208,6 @@ static uint8_t OSKGen(const polyveck *t,
   pack2_sk(osk, rho, tr, key, &t0, &s1, &s2);
   return 0;
 }
-
 
 static int Sign(uint8_t *sig,
                 size_t *siglen,
@@ -230,51 +228,57 @@ static int Verify(uint8_t *m,
 }
 
 static uint8_t OSKGen_w(const polyveck *t,
-                      const uint8_t *pk,
-                      const uint8_t *opk,
-                      const uint8_t *sk,
-                      const uint8_t *dk,
-                      const uint8_t *ct,
-                      uint8_t *sig,
-                      size_t *siglen,
-                      uint8_t *osk,
-                      uint8_t *ovk){
-    
-    uint8_t epk[CRYPTO2_SECRETKEYBYTES];
-    int res = OSKGen(t, pk, opk, sk, dk, ct, epk);
-    crypto_sign_keypair(ovk, osk);
-    res |= Sign(sig, siglen, ovk, CRYPTO_PUBLICKEYBYTES, epk);
-    if (res) return -1;
-    return 0;
+                        const uint8_t *pk,
+                        const uint8_t *opk,
+                        const uint8_t *sk,
+                        const uint8_t *dk,
+                        const uint8_t *ct,
+                        uint8_t *sig,
+                        size_t *siglen,
+                        uint8_t *osk,
+                        uint8_t *ovk)
+{
+
+  uint8_t epk[CRYPTO2_SECRETKEYBYTES];
+  int res = OSKGen(t, pk, opk, sk, dk, ct, epk);
+  crypto_sign_keypair(ovk, osk);
+  res |= Sign(sig, siglen, ovk, CRYPTO_PUBLICKEYBYTES, epk);
+  if (res)
+    return -1;
+  return 0;
 }
 
 static uint8_t Sign_w(uint8_t *sig,
-                size_t *siglen,
-                const uint8_t *m,
-                size_t mlen,
-                const uint8_t *osk){
-    
-    int res = crypto_sign(sig, siglen, m, mlen, osk);
-    if (res) return -1;
-    return 0;
-} 
+                      size_t *siglen,
+                      const uint8_t *m,
+                      size_t mlen,
+                      const uint8_t *osk)
+{
+
+  int res = crypto_sign(sig, siglen, m, mlen, osk);
+  if (res)
+    return -1;
+  return 0;
+}
 
 static uint8_t Verify_w(uint8_t *m,
-                  size_t *mlen,
-                  const uint8_t *sm,
-                  size_t smlen,
-                  const uint8_t *opk,
-                  uint8_t *m2,
-                  size_t *mlen2,
-                  const uint8_t *sm2,
-                  size_t smlen2,
-                  const uint8_t *vk){
-    
-    int ret = Verify(m, mlen, sm, smlen, opk);
-    ret |= Verify(m2, mlen2, sm2, smlen2, vk);
-    if (ret) return -1;
-    return 0;
-} 
+                        size_t *mlen,
+                        const uint8_t *sm,
+                        size_t smlen,
+                        const uint8_t *opk,
+                        uint8_t *m2,
+                        size_t *mlen2,
+                        const uint8_t *sm2,
+                        size_t smlen2,
+                        const uint8_t *vk)
+{
+
+  int ret = Verify(m, mlen, sm, smlen, opk);
+  ret |= Verify(m2, mlen2, sm2, smlen2, vk);
+  if (ret)
+    return -1;
+  return 0;
+}
 int main(void)
 {
 
@@ -287,8 +291,8 @@ int main(void)
   uint8_t MSK_sk[CRYPTO_SECRETKEYBYTES];
   uint8_t OPK_opk[CRYPTO_PUBLICKEYBYTES];
 
-  uint8_t OSK_vk[CRYPTO_PUBLICKEYBYTES+ CRYPTO_BYTES];
-  uint8_t OSK_vk2[CRYPTO_PUBLICKEYBYTES+ CRYPTO_BYTES];
+  uint8_t OSK_vk[CRYPTO_PUBLICKEYBYTES + CRYPTO_BYTES];
+  uint8_t OSK_vk2[CRYPTO_PUBLICKEYBYTES + CRYPTO_BYTES];
   uint8_t OSK_sk[CRYPTO_SECRETKEYBYTES];
   uint8_t OSK_sig[CRYPTO_PUBLICKEYBYTES + CRYPTO_BYTES];
 
