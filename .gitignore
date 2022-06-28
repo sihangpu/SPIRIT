@@ -1,0 +1,6 @@
+*.req
+*.rsp
+.DS_Store
+.vscode/
+build/
+
