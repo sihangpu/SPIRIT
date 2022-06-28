@@ -10,7 +10,6 @@ brew install cmake ninja openssl
 
 Build the project:
 ```bash
- git clone -b master https://github.com/sihangpu/SPIRIT.git
  cd SPIRIT
  mkdir build && cd build
  cmake -GNinja ..
