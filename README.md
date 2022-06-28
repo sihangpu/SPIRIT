@@ -17,4 +17,4 @@ Build the project:
  ninja
 ```
 
-By default, the exectuable file in `build/src/test_spirit_ref` simply tests the functionality of $\mathsf{SPIRIT}_{w/o}$ (after transfermation) 1000 times to calulate its running time.
+By default, the exectuable file in `build/src/test_spirit_ref` simply tests the functionality of $\mathsf{SPIRIT}_{w/o}$ (after transformation) 1000 times to calulate its running time.
