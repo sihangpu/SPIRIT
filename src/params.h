@@ -15,7 +15,7 @@
 #define L 4
 #define ETA 2
 #define TAU 39
-#define BETA 156
+#define BETA 78*2
 #define GAMMA1 (1 << 18)
 #define GAMMA2 ((Q-1)/44)
 #define OMEGA 80
@@ -25,9 +25,9 @@
 #define L 5
 #define ETA 4
 #define TAU 49
-#define BETA 196
-#define GAMMA1 (1 << 19)
-#define GAMMA2 ((Q-1)/32)
+#define BETA 196*2
+#define GAMMA1 (1 << 20)
+#define GAMMA2 ((Q-1)/16)
 #define OMEGA 55
 
 #elif DILITHIUM_MODE == 5
@@ -35,9 +35,9 @@
 #define L 7
 #define ETA 2
 #define TAU 60
-#define BETA 120
-#define GAMMA1 (1 << 19)
-#define GAMMA2 ((Q-1)/32)
+#define BETA 120*2
+#define GAMMA1 (1 << 20)
+#define GAMMA2 ((Q-1)/16)
 #define OMEGA 75
 
 #endif
