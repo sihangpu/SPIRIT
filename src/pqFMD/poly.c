@@ -1,40 +1,30 @@
 #include "poly.h"
 
-
-void GenMatrix(uint16_t A[KYBER_K][KYBER_K][KYBER_N], const uint8_t seed[KYBER_SEEDBYTES])
+void GenBionomialETA_ES(uint16_t s[FMD_N * FMD_L], const uint8_t seed[KYBER_NOISE_SEEDBYTES])
 {
-	uint8_t buf[KYBER_K * KYBER_POLYVECBYTES];
-	int i;
-
-	shake128(buf, sizeof(buf), seed, KYBER_SEEDBYTES);
-
-	for (i = 0; i < KYBER_K; i++)
-	{
-		BS2POLVECq(buf + i * KYBER_POLYVECBYTES, A[i]);
-	}
-}
-
-void GenBionomialETA1(uint16_t s[KYBER_K][KYBER_N], const uint8_t seed[KYBER_NOISE_SEEDBYTES])
-{
-	uint8_t buf[KYBER_K * KYBER_POLYCOINBYTES_ETA1];
+	uint8_t buf[FMD_N * FMD_POLYCOINBYTES_ETA_l];
 	size_t i;
 
 	shake128(buf, sizeof(buf), seed, KYBER_NOISE_SEEDBYTES);
 
-	for (i = 0; i < KYBER_K; i++)
+	for (i = 0; i < FMD_N; i++)
 	{
-		poly_cbd_eta1(s[i], buf + i * KYBER_POLYCOINBYTES_ETA1);
+		poly_cbd_eta_l((s + i * FMD_L), buf + i * FMD_POLYCOINBYTES_ETA_l);
 	}
 }
-void GenBionomialETA2(uint16_t s[KYBER_K][KYBER_N], const uint8_t seed[KYBER_NOISE_SEEDBYTES])
+
+void GenBionomialETA_en(uint16_t s[FMD_N], const uint8_t seed[KYBER_NOISE_SEEDBYTES])
 {
-	uint8_t buf[KYBER_K * KYBER_POLYCOINBYTES_ETA2];
-	size_t i;
+	uint8_t buf[FMD_POLYCOINBYTES_ETA_n];
 
 	shake128(buf, sizeof(buf), seed, KYBER_NOISE_SEEDBYTES);
+	poly_cbd_eta_n(s, buf);
+}
 
-	for (i = 0; i < KYBER_K; i++)
-	{
-		poly_cbd_eta2(s[i], buf + i * KYBER_POLYCOINBYTES_ETA2);
-	}
+void GenBionomialETA_el(uint16_t s[FMD_L], const uint8_t seed[KYBER_NOISE_SEEDBYTES])
+{
+	uint8_t buf[FMD_POLYCOINBYTES_ETA_l];
+
+	shake128(buf, sizeof(buf), seed, KYBER_NOISE_SEEDBYTES);
+	poly_cbd_eta_l(s, buf);
 }

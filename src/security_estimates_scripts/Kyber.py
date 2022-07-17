@@ -60,7 +60,7 @@ if __name__ == "__main__":
     print ("--------------------")
     print ("security:")
     MLWE_summarize_attacks(Kyber_to_MLWE(ps_light))
-    # summarize(ps_light)
+    summarize(ps_light)
     print ()
 
     # print ("Kyber768 (recommended):")

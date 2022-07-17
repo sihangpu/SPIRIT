@@ -7,8 +7,8 @@
 #include "fips202.h"
 #include "cbd.h"
 
-void GenMatrix(uint16_t a[KYBER_K][KYBER_K][KYBER_N], const uint8_t seed[KYBER_SEEDBYTES]);
-void GenBionomialETA2(uint16_t s[KYBER_K][KYBER_N], const uint8_t seed[KYBER_NOISE_SEEDBYTES]);
-void GenBionomialETA1(uint16_t s[KYBER_K][KYBER_N], const uint8_t seed[KYBER_NOISE_SEEDBYTES]);
+void GenBionomialETA_en(uint16_t s[FMD_N], const uint8_t seed[KYBER_NOISE_SEEDBYTES]);
+void GenBionomialETA_el(uint16_t s[FMD_L], const uint8_t seed[KYBER_NOISE_SEEDBYTES]);
+void GenBionomialETA_ES(uint16_t s[FMD_N * FMD_L], const uint8_t seed[KYBER_NOISE_SEEDBYTES]);
 
 #endif

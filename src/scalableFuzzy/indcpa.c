@@ -66,7 +66,7 @@ void indcpa_enc_fuzzy(const uint8_t m[KYBER_KEYBYTES],
 			ct0[i][j] += e1[i][j];
 			if (i == 0)
 				ct0[i][j] += (mxyp[i][j] << (KYBER_EQ - 1));
-			ct1[j] &= KYBER_Q;
+			ct0[i][j] &= KYBER_Q;
 			ct0[i][j] >>= (KYBER_EQ - KYBER_du); // compress_du
 		}
 	}

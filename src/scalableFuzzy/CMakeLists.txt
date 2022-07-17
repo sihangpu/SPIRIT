@@ -28,7 +28,7 @@
    indcpa.h randombytes.h)
 
 
- add_library(kyber_non_NTT_ref SHARED ${libfiles} ${libheaders})
+ add_library(kyber_non_NTT_ref ${libfiles} ${libheaders})
  target_link_libraries(kyber_non_NTT_ref crypto)
 
  add_executable(test_scalable_fuzzy ${libheaders} test/test_scalable_fuzzy.c)

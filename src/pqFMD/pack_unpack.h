@@ -7,10 +7,6 @@
 #include "params.h"
 
 
-void POLVECq2BS(uint8_t bytes[KYBER_POLYVECBYTES], const uint16_t data[KYBER_K][KYBER_N]);
-void BS2POLVECq(const uint8_t bytes[KYBER_POLYVECBYTES], uint16_t data[KYBER_K][KYBER_N]);
-
-void BS2POLmsg(const uint8_t bytes[KYBER_KEYBYTES], uint16_t data[KYBER_N]);
-void POLmsg2BS(uint8_t bytes[KYBER_KEYBYTES], const uint16_t data[KYBER_N]);
+void BS2MATq(const uint8_t bytes[FMD_MAT_A_BYTES], uint64_t data[FMD_L*FMD_L]);
 
 #endif

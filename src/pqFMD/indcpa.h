@@ -8,19 +8,17 @@
 #include "pack_unpack.h"
 #include "fips202.h"
 
-void indcpa_dec_fuzzy(const uint16_t sk[KYBER_K][KYBER_N],
-					  const uint8_t seed_xy[KYBER_SEEDBYTES],
-					  uint16_t ct0[KYBER_K][KYBER_N],
-					  uint16_t ct1[KYBER_N],
-					  uint8_t m[KYBER_KEYBYTES]);
+uint32_t indcpa_dec_packRegev(const uint16_t sk[FMD_T * FMD_L],
+							  const uint64_t ct0[FMD_L],
+							  uint64_t ct1[2]);
 
-void indcpa_enc_fuzzy(const uint8_t m[KYBER_KEYBYTES],
-					  const uint16_t pk[KYBER_K][KYBER_N],
-					  const uint8_t seed_A[KYBER_SEEDBYTES],
-					  const uint8_t seed_xy[KYBER_SEEDBYTES],
-					  uint16_t ct0[KYBER_K][KYBER_N],
-					  uint16_t ct1[KYBER_N]);
-void indcpa_keypair_fuzzy(uint16_t pk[KYBER_K][KYBER_N],
-						  uint8_t seed_A[KYBER_SEEDBYTES],
-						  uint16_t sk[KYBER_K][KYBER_N]);
+void indcpa_enc_packRegev(uint32_t m,
+						  const uint64_t pk[FMD_N * FMD_L],
+						  const uint8_t seed_A[KYBER_SEEDBYTES],
+						  uint64_t ct0[FMD_L],
+						  uint64_t ct1[2]);
+
+void indcpa_keypair_packRegev(uint64_t pk[FMD_N * FMD_L],
+							  uint8_t seed_A[KYBER_SEEDBYTES],
+							  uint16_t sk[FMD_N * FMD_L]);
 #endif

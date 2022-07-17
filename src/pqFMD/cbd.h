@@ -11,6 +11,6 @@ Vadim Lyubashevsky, John M. Schanck, Peter Schwabe & Damien stehle
 #include <stdint.h>
 #include "params.h"
 
-void poly_cbd_eta2(uint16_t r[KYBER_N], const uint8_t buf[KYBER_ETA2*KYBER_N/4]);
-void poly_cbd_eta1(uint16_t r[KYBER_N], const uint8_t buf[KYBER_ETA1*KYBER_N/4]);
+void poly_cbd_eta_l(uint16_t r[FMD_L], const uint8_t buf[FMD_ETA*FMD_L/4]);
+void poly_cbd_eta_n(uint16_t r[FMD_N], const uint8_t buf[FMD_ETA*FMD_N/4]);
 #endif
