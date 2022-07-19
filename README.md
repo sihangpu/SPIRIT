@@ -4,14 +4,9 @@ Toy implementation of SPIRIT
 ## Usage
 > Since _Anonymous Github_ doesn't support downloading/cloning the repo, please directly download the `spirit.zip` to compile.
 
-Please make sure you have installed `cmake`, `ninja` and `gls`, otherwise run the following command to install.
+Please make sure you have installed `cmake` and `ninja` , otherwise run the following command to install.
 ```bash
-brew install cmake ninja gls
-```
-Note that `gls` is only required in `pqFMD` and you probably need to set `gls` compiling and linking flags properly as follows. Edit `/src/pqFMD/CMakeLists.txt` to set proper path as follows.
-```bash
-  add_compile_options(-I/opt/homebrew/Cellar/gsl/2.7.1/include)
-  add_link_options(-L/opt/homebrew/Cellar/gsl/2.7.1/lib)
+brew install cmake ninja
 ```
 
 
@@ -23,4 +18,4 @@ Build the project:
  ninja
 ```
 
-By default, the exectuable file in `build/src/test_spirit_ref` simply tests the functionality of $\mathsf{SPIRIT}_{w/o}$ (after transformation) 1000 times to calulate its average running time.
+By default, the exectuable files in `SPIRIT/build/src/` will run $\mathsf{SPIRIT}$ w/ and w/o KEY_EXPOSURE_SECURITY for security levels 128, 192, and 256. Additionally, there's also the version with Falcon integrated for more compact signature size. Fuzzy trackings, i.e., Post-quantum FMD and ScalableFuzzyTracking can also be tested in the folder `SPIRIT/build/src/pqFMD/` and `/SPIRIT/build/src/scalableFuzzy`, respectively.

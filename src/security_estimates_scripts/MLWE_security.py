@@ -128,6 +128,7 @@ def MLWE_summarize_attacks(ps):
 
 
 if __name__ == "__main__":
+    print("---pqFMD---")
     q = 2**60
     d = 9
     n = d * 256
@@ -138,6 +139,8 @@ if __name__ == "__main__":
     (m_pq, b_pq, c_pq) = MLWE_optimize_attack(q, n, max_m, s,
                                               cost_attack=LWE_primal_cost, cost_svp=svp_quantum, verbose=False)
     # (m_pp, b_pp, c_pp) = MLWE_optimize_attack(q, n, max_m, s,
-                                            #   cost_attack=LWE_primal_cost, cost_svp=svp_plausible, verbose=False)
+    #   cost_attack=LWE_primal_cost, cost_svp=svp_plausible, verbose=False)
     t = 20
-    print("Primal & %d  & %d & StatisticalDistance & %f" % ( int(floor(c_pc)), int(floor(c_pq)), float(log2((s*s*n*2+s)*4*t/q))) )
+
+    print("Primal & %d  & %d & StatisticalDistance & %f" %
+          (int(floor(c_pc)), int(floor(c_pq)), float(log2((s*s*n*2+s)*4*t/q))))

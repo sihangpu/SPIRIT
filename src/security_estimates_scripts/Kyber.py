@@ -51,9 +51,9 @@ def summarize(ps):
 
 if __name__ == "__main__":
     # Parameter sets
-    ps_light = KyberParameterSet(256, 2, 3, 3, 4096, 2**15, 2**10, 2**4, ke_ct=2) # 256,2,3,3,2**12,2**10,2**4,2)
+    ps_light = KyberParameterSet(256, 2, 3, 3, 4096, 2**12, 2**10, 2**4, ke_ct=2) # 256,2,3,3,2**12,2**10,2**4,2)
     # ps_recommended = KyberParameterSet(256, 3, 2, 2, 3329, 2**12, 2**10, 2**4)
-    # ps_paranoid = KyberParameterSet(256, 4, 2, 2, 4096, 2**12, 2**10, 2**5)
+    # ps_paranoid = KyberParameterSet(256, 4, 2, 2, 3329, 2**12, 2**10, 2**5)
 
     # Analyses
     print ("Kyber512 (light):")

@@ -6,7 +6,7 @@
 #define KYBER_ETA1 3
 #define KYBER_ETA2 2
 #define KYBER_EQ 12
-#define KYBER_Q ((1 << KYBER_EQ) - 1) // 2^12
+#define KYBER_Q ((1 << KYBER_EQ)-1) // modular mask for 2^12: 0x0FFF
 #define KYBER_du 10
 #define KYBER_dv 4
 

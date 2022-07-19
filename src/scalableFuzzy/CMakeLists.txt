@@ -29,7 +29,7 @@
 
 
  add_library(kyber_non_NTT_ref ${libfiles} ${libheaders})
- target_link_libraries(kyber_non_NTT_ref crypto)
+ target_link_libraries(kyber_non_NTT_ref)
 
  add_executable(test_scalable_fuzzy ${libheaders} test/test_scalable_fuzzy.c)
  target_link_libraries(test_scalable_fuzzy kyber_non_NTT_ref)

@@ -47,8 +47,8 @@ UnifVeryHighDilithium       = UniformDilithiumParameterSet(n, 8, 7, 2**20, (q-1)
 
 
 all_params_unif = [#("Uniform Dilithium Weak", UnifWeakDilithium),
-                #    ("Uniform Dilithium Medium", UnifMediumDilithium),
-                #    ("Uniform Dilithium Recommended", UnifRecommendedDilithium),
+                   ("Uniform Dilithium Medium", UnifMediumDilithium),
+                   ("Uniform Dilithium Recommended", UnifRecommendedDilithium),
                    ("Uniform Dilithium Very High", UnifVeryHighDilithium)]
 
 all_params = all_params_unif

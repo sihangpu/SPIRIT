@@ -4,12 +4,12 @@
 #define FMD_L 2304 // 256*9
 #define FMD_N 30
 #define FMD_T 15
-#define FMD_T_MASK ((1 << FMD_T) - 1) // 0x7FFF
+#define FMD_T_MASK ((1 << FMD_T) - 1) // // modular mask for 2^15: 0x7FFF
 #define FMD_ERROR_BOUND (FMD_ETA * FMD_ETA * FMD_L * 2 + FMD_ETA)
 
 #define FMD_ETA 3
 #define FMD_EQ 60
-#define FMD_Q (((uint64_t)1 << FMD_EQ) - 1) // 0x0FFF...FFF
+#define FMD_Q (((uint64_t)1 << FMD_EQ) - 1) // // modular mask for 2^60: 0x0FFF...FFF
 
 #define FMD_Z_BYTES (1 + ((FMD_EQ - (FMD_EQ & 0x07)) >> 3)) // \lceil FMD_EQ/8 \rceil
 #define FMD_MAT_A_BYTES (FMD_L * FMD_L * 8)

@@ -22,7 +22,7 @@ set(PQFMD_SRCS cbd.c fips202.c multi.c pack_unpack.c poly.c indcpa.c  randombyte
 
 
 add_library(pq_fmd ${PQFMD_SRCS} )
-target_link_libraries(pq_fmd crypto)
+target_link_libraries(pq_fmd)
 
 add_executable(test_pq_fmd test/test_pq_fmd.c)
 target_link_libraries(test_pq_fmd pq_fmd) # gsl gslcblas m
