@@ -88,17 +88,29 @@ void indcpa_enc_fuzzy(const uint8_t m[KYBER_KEYBYTES],
 
 void indcpa_dec_fuzzy(const uint16_t sk[KYBER_K][KYBER_N],
 					  const uint8_t seed_xy[KYBER_SEEDBYTES],
-					  uint16_t ct0[KYBER_K][KYBER_N],
-					  uint16_t ct1[KYBER_N],
+					  const uint16_t ct0_in[KYBER_K][KYBER_N],
+					  const uint16_t ct1_in[KYBER_N],
 					  uint8_t m[KYBER_KEYBYTES])
 {
-
+	uint16_t ct0[KYBER_K][KYBER_N];
+	uint16_t ct1[KYBER_N];
 	uint16_t v[KYBER_N] = {0};
 	int i, j;
 	uint16_t mxyp[KYBER_K][KYBER_N];
-
 	uint8_t buf[(KYBER_K + 1) * KYBER_KEYBYTES];
+
+	for (i = 0; i < KYBER_K; ++i)
+	{
+		for (j = 0; j < KYBER_N; ++j)
+		{
+			ct0[i][j] = ct0_in[i][j];
+		}
+	}
+	for (j = 0; j < KYBER_N; ++j)
+		ct1[j] = ct1_in[j];
+
 	shake128(buf, sizeof(buf), seed_xy, KYBER_SEEDBYTES);
+
 	for (i = 0; i < KYBER_K; i++)
 		BS2POLmsg(buf + i * KYBER_KEYBYTES, mxyp[i]);
 
@@ -118,7 +130,7 @@ void indcpa_dec_fuzzy(const uint16_t sk[KYBER_K][KYBER_N],
 	for (i = 0; i < KYBER_N; i++)
 	{
 		ct1[i] <<= (KYBER_EQ - KYBER_dv); // decompress_dv
-		ct1[i] -= (mxyp[KYBER_K-1][i] << (KYBER_EQ - 1));
+		ct1[i] -= (mxyp[KYBER_K - 1][i] << (KYBER_EQ - 1));
 		v[i] -= ct1[i];
 		v[i] &= KYBER_Q;
 		if (v[i] >> (KYBER_EQ - 1))

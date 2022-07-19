@@ -7,7 +7,7 @@
   add_compile_options(/nologo /O2 /W4 /wd4146 /wd4244)
 else()
   add_compile_options(-Wall -Wextra -Wpedantic)
-  # add_compile_options(-Werror)
+  add_compile_options(-Werror)
   add_compile_options(-Wmissing-prototypes -Wredundant-decls -Wshadow -Wpointer-arith)
   add_compile_options(-O3 -fomit-frame-pointer)
 
