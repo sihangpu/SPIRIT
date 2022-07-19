@@ -7,7 +7,7 @@
 #include "../randombytes.h"
 #include "../indcpa.h"
 
-#define NTESTS 10000
+#define NTESTS 1000
 
 float t_gen = 0, t_enc = 0, t_dec = 0;
 int start, mid1, mid2, end;
@@ -65,7 +65,8 @@ int main()
 	else if(ErrorOccurred == 1)
 		printf("\nMismatch messages.\n");
 
-	printf("CIPHERTEXT_BYTES: %d Bytes \n", KYBER_CIPHERBYTES);
+	printf("\nFUZZY_TRACKING_INFO_BYTES: %d Bytes \n", KYBER_CIPHERBYTES);
+	printf("FUZZY_PUBLICKEY_BYTES: %d Bytes \n", KYBER_PUBLICKEYBYTES);
 	printf("KEYGEN_TIME = %f ms \n", 1000 * (t_gen / NTESTS) / CLOCKS_PER_SEC);
 	printf("Enc_TIME = %f ms \n", 1000 * (t_enc / NTESTS) / CLOCKS_PER_SEC);
 	printf("Dec_TIME = %f ms \n", 1000 * (t_dec / NTESTS) / CLOCKS_PER_SEC);

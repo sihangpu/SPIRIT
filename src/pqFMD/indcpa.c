@@ -1,12 +1,11 @@
 #include "indcpa.h"
-#include "randombytes.h"
-#include "multi.h"
+
 
 void indcpa_keypair_packRegev(uint64_t pk[FMD_N * FMD_L],
-							  uint8_t seed_A[KYBER_SEEDBYTES],
+							  uint8_t seed_A[FMD_SEEDBYTES],
 							  uint16_t sk[FMD_N * FMD_L])
 {
-	uint8_t seed_randomcoin[KYBER_SEEDBYTES * 2];
+	uint8_t seed_randomcoin[FMD_SEEDBYTES * 2];
 	int i, j;
 	uint64_t offset;
 
@@ -15,16 +14,16 @@ void indcpa_keypair_packRegev(uint64_t pk[FMD_N * FMD_L],
 	uint64_t *_AT = calloc(FMD_L * FMD_L, sizeof(uint64_t));
 	uint16_t *_ET = calloc(FMD_N * FMD_L, sizeof(uint16_t));
 
-	randombytes(seed_A, KYBER_SEEDBYTES);
-	shake128(seed_A, KYBER_SEEDBYTES, seed_A, KYBER_SEEDBYTES); // for not revealing system RNG state
+	randombytes(seed_A, FMD_SEEDBYTES);
+	shake128(seed_A, FMD_SEEDBYTES, seed_A, FMD_SEEDBYTES); // for not revealing system RNG state
 	randombytes(seed_randomcoin, sizeof(seed_randomcoin));
 
 	// gen A^t
-	shake128(_AT_buf, FMD_MAT_A_BYTES, seed_A, KYBER_SEEDBYTES);
+	shake128(_AT_buf, FMD_MAT_A_BYTES, seed_A, FMD_SEEDBYTES);
 	BS2MATq(_AT_buf, _AT);
 	// gen S^t and E^t
 	GenBionomialETA_ES(sk, seed_randomcoin);
-	GenBionomialETA_ES(_ET, seed_randomcoin + KYBER_SEEDBYTES);
+	GenBionomialETA_ES(_ET, seed_randomcoin + FMD_SEEDBYTES);
 	// S^t * A^t + E^t = B^t + E^t
 	multi_mat_mat(sk, _AT, pk);
 
@@ -45,7 +44,7 @@ void indcpa_keypair_packRegev(uint64_t pk[FMD_N * FMD_L],
 
 void indcpa_enc_packRegev(uint32_t m,
 						  const uint64_t pk[FMD_N * FMD_L],
-						  const uint8_t seed_A[KYBER_SEEDBYTES],
+						  const uint8_t seed_A[FMD_SEEDBYTES],
 						  uint64_t ct0[FMD_L],
 						  uint64_t ct1[2])
 {
@@ -54,7 +53,7 @@ void indcpa_enc_packRegev(uint32_t m,
 #endif
 	int i;
 	uint8_t m_bit;
-	uint8_t seed_randomcoin[KYBER_SEEDBYTES * 3];
+	uint8_t seed_randomcoin[FMD_SEEDBYTES * 3];
 	uint8_t z_bytes[FMD_Z_BYTES];
 	randombytes(seed_randomcoin, sizeof(seed_randomcoin));
 
@@ -67,11 +66,11 @@ void indcpa_enc_packRegev(uint32_t m,
 	uint16_t *_e2 = calloc(FMD_N, sizeof(uint16_t));
 
 	// gen A^t, r, e1, e2
-	shake128(_AT_buf, FMD_MAT_A_BYTES, seed_A, KYBER_SEEDBYTES);
+	shake128(_AT_buf, FMD_MAT_A_BYTES, seed_A, FMD_SEEDBYTES);
 	BS2MATq(_AT_buf, _AT);
 	GenBionomialETA_el(_r, seed_randomcoin);
-	GenBionomialETA_el(_e1, seed_randomcoin + KYBER_SEEDBYTES);
-	GenBionomialETA_en(_e2, seed_randomcoin + 2*KYBER_SEEDBYTES);
+	GenBionomialETA_el(_e1, seed_randomcoin + FMD_SEEDBYTES);
+	GenBionomialETA_en(_e2, seed_randomcoin + 2*FMD_SEEDBYTES);
 	
 	// gen ct0 = A^t * r + e1, ct1 = B^t * r + e2
 	multi_mat_vec_c1(_AT, _r, ct0);
@@ -103,11 +102,14 @@ void indcpa_enc_packRegev(uint32_t m,
 		_ct1[i] += ct1[0];
 		_ct1[i] &= FMD_Q;
 		
-		// if (((_ct1[i] >= (FMD_Q >> 2) - B) && (_ct1[i] <= (FMD_Q >> 2) + B)) ||
-		// 	((_ct1[i] >= 3 * (FMD_Q >> 2) - B) && (_ct1[i] <= 3 * (FMD_Q >> 2) + B)))
+		/***  If the moduli is large enough, then failure probability will be negligible.
+		 * 
+		// if (((_ct1[i] >= (FMD_Q >> 2) - FMD_ERROR_BOUND) && (_ct1[i] <= (FMD_Q >> 2) + FMD_ERROR_BOUND)) ||
+		// 	((_ct1[i] >= 3 * (FMD_Q >> 2) - FMD_ERROR_BOUND) && (_ct1[i] <= 3 * (FMD_Q >> 2) + FMD_ERROR_BOUND)))
 		// {
 		// 	printf(" ERROR: z is not in proper range!");
 		// }
+		***/
 
 		// rounding
 		if (_ct1[i] >> (FMD_EQ - 1))

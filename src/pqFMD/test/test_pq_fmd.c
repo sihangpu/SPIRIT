@@ -56,7 +56,8 @@ int main()
     else if (ErrorOccurred == 1)
         printf("\nMismatch messages.\n");
 
-    printf("\nCIPHERTEXT_BYTES: %d Bytes \n", FMD_TAG_BYTES);
+    printf("\nFUZZY_TRACKING_INFO_BYTES: %d Bytes \n", FMD_TAG_BYTES);
+    printf("PUBLICKEY_BYTES: %d Bytes \n", FMD_PK_BYTES);
     printf("KEYGEN_TIME = %f ms \n", 1000 * (t_gen / NTESTS) / CLOCKS_PER_SEC);
     printf("Enc_TIME = %f ms \n", 1000 * (t_enc / NTESTS) / CLOCKS_PER_SEC);
     printf("Dec_TIME = %f ms \n", 1000 * (t_dec / NTESTS) / CLOCKS_PER_SEC);

@@ -155,7 +155,8 @@ rej:
   polyvecl_add(&z, &z, &y);
   polyvecl_reduce(&z);
   if(polyvecl_chknorm(&z, GAMMA1 - BETA))
-    goto rej;
+     goto rej;
+   
 
   /* Check that subtracting cs2 does not change high bits of w and low bits
    * do not reveal secret information */

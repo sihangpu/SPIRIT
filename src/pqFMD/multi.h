@@ -1,3 +1,6 @@
+#ifndef MULTI_H
+#define MULTI_H
+
 #include "params.h"
 #include <stdio.h>
 #include <stdint.h>
@@ -18,3 +21,5 @@ void multi_mat_vec_c2(const uint64_t matBT[FMD_N * FMD_L],
 void multi_mat_vec_c1(const uint64_t matAT[FMD_L * FMD_L],
                       const uint16_t vecR[FMD_L],
                       uint64_t vecC[FMD_L]);
+
+#endif

@@ -41,15 +41,15 @@ q = 8380417
 
 # UnifWeakDilithium           = UniformDilithiumParameterSet(n, 3, 2, gamma, q, 7, pkdrop=14)
 
-UnifMediumDilithium         = UniformDilithiumParameterSet(n, 4, 4, 2**18, (q-1)/44, 39, q, 4, pkdrop=13)
-UnifRecommendedDilithium    = UniformDilithiumParameterSet(n, 6, 5, 2**19, (q-1)/32, 49, q, 4, pkdrop=13)
-UnifVeryHighDilithium       = UniformDilithiumParameterSet(n, 8, 7, 2**19, (q-1)/32, 60, q, 2, pkdrop=13)
+UnifMediumDilithium         = UniformDilithiumParameterSet(n, 4, 4, 2**18, (q-1)/44, 39, q, 2, pkdrop=13)
+UnifRecommendedDilithium    = UniformDilithiumParameterSet(n, 6, 5, 2**20, (q-1)/16, 49, q, 4, pkdrop=13)
+UnifVeryHighDilithium       = UniformDilithiumParameterSet(n, 8, 7, 2**20, (q-1)/16, 60, q, 2, pkdrop=13)
 
 
 all_params_unif = [#("Uniform Dilithium Weak", UnifWeakDilithium),
-                   ("Uniform Dilithium Medium", UnifMediumDilithium)]
+                #    ("Uniform Dilithium Medium", UnifMediumDilithium),
                 #    ("Uniform Dilithium Recommended", UnifRecommendedDilithium),
-                #    ("Uniform Dilithium Very High", UnifVeryHighDilithium)]
+                   ("Uniform Dilithium Very High", UnifVeryHighDilithium)]
 
 all_params = all_params_unif
 
