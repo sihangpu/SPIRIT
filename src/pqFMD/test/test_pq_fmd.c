@@ -36,7 +36,7 @@ int main()
 
         start = clock();
         indcpa_keypair_packRegev(matBT, seed, matST);
-        
+
         mid1 = clock();
         indcpa_enc_packRegev(m, matBT, seed, vecC1, vecC2);
 
@@ -58,9 +58,11 @@ int main()
 
     printf("\nFUZZY_TRACKING_INFO_BYTES: %d Bytes \n", FMD_TAG_BYTES);
     printf("PUBLICKEY_BYTES: %d Bytes \n", FMD_PK_BYTES);
+    printf("\nHANDLING 2^{%u} USERS, WITH FALSE_POSITIVE RATE 2^{-%u}\n", FMD_N, FMD_T);
     printf("KEYGEN_TIME = %f ms \n", 1000 * (t_gen / NTESTS) / CLOCKS_PER_SEC);
-    printf("Enc_TIME = %f ms \n", 1000 * (t_enc / NTESTS) / CLOCKS_PER_SEC);
-    printf("Dec_TIME = %f ms \n", 1000 * (t_dec / NTESTS) / CLOCKS_PER_SEC);
+    printf("USER_FLAG (ENC) _TIME = %f ms \n", 1000 * (t_enc / NTESTS) / CLOCKS_PER_SEC);
+    printf("SERVER_DEC_TIME_PER_DETECTION = %f ms \n", 1000 * (t_dec / NTESTS) / CLOCKS_PER_SEC);
+    printf("SERVER_COMPUTATION_TIME = %f seconds \n",  (t_dec * (1<<FMD_N) / NTESTS) / CLOCKS_PER_SEC);
 
     free(matBT);
     free(matST);

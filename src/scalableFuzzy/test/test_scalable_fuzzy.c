@@ -66,8 +66,9 @@ int main()
 
 	printf("\nFUZZY_TRACKING_INFO_BYTES: %d Bytes \n", KYBER_CIPHERBYTES);
 	printf("FUZZY_PUBLICKEY_BYTES: %d Bytes \n", KYBER_PUBLICKEYBYTES);
-	printf("KEYGEN_TIME = %f ms \n", 1000 * (t_gen / NTESTS) / CLOCKS_PER_SEC);
-	printf("Enc_TIME = %f ms \n", 1000 * (t_enc / NTESTS) / CLOCKS_PER_SEC);
-	printf("Dec_TIME = %f ms \n", 1000 * (t_dec / NTESTS) / CLOCKS_PER_SEC);
+	printf("\nHANDLING 2^{%u} USERS, WITH FALSE_POSITIVE RATE 2^{-%u}\n", USERS_NUM_E, FUZZY_LIST_SIZE_E);
+	printf("SERVER_SETUP_TIME = %f ms \n", 1000 * (t_gen / NTESTS) / CLOCKS_PER_SEC);
+	printf("USER_ENC_TIME = %f ms \n", 1000 * (t_enc / NTESTS) / CLOCKS_PER_SEC);
+	printf("SERVER_COMPUTATION_TIME = %f ms \n", 1000 * (t_dec / NTESTS) / CLOCKS_PER_SEC);
 	return 0;
 }

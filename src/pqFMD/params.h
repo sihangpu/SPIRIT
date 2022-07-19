@@ -1,9 +1,11 @@
 #ifndef PARAMS_H
 #define PARAMS_H
 
-#define FMD_L 2304 // 256*9
+
 #define FMD_N 20
 #define FMD_T 12
+
+#define FMD_L 2304 // 256*9
 #define FMD_T_MASK ((1 << FMD_T) - 1) // // modular mask for 2^15: 0x7FFF
 #define FMD_ERROR_BOUND (FMD_ETA * FMD_ETA * FMD_L * 2 + FMD_ETA)
 
