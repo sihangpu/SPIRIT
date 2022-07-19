@@ -7,11 +7,6 @@
 
  cmake_minimum_required(VERSION 3.10)
 
- set(CMAKE_CONFIGURATION_TYPES "Release" CACHE STRING "" FORCE)
-
- if(NOT CMAKE_BUILD_TYPE)
-     set(CMAKE_BUILD_TYPE Release)
- endif()
 
  if(MSVC)
  else()
