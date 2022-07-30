@@ -1,11 +1,14 @@
 #ifndef PARAMS_H
 #define PARAMS_H
 
-
+#ifndef FMD_N
 #define FMD_N 20
-#define FMD_T 12
+#endif
 
-#define FMD_L 2304 // 256*9
+#ifndef FMD_T
+#define FMD_T 15
+#endif
+#define FMD_L 2304                    // 256*9
 #define FMD_T_MASK ((1 << FMD_T) - 1) // // modular mask for 2^15: 0x7FFF
 #define FMD_ERROR_BOUND (FMD_ETA * FMD_ETA * FMD_L * 2 + FMD_ETA)
 
@@ -17,7 +20,7 @@
 #if ((FMD_EQ & 0x07) == 0)
 #define FMD_Z_BYTES (FMD_EQ >> 3)
 #else
-#define FMD_Z_BYTES (1 + ((FMD_EQ - (FMD_EQ & 0x07)) >> 3)) 
+#define FMD_Z_BYTES (1 + ((FMD_EQ - (FMD_EQ & 0x07)) >> 3))
 #endif
 
 #define FMD_MAT_A_BYTES (FMD_L * FMD_L * 8)
