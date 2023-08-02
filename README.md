@@ -2,7 +2,6 @@
 Toy implementation of SPIRIT
 
 ## Usage
-> Since _Anonymous Github_ doesn't support downloading/cloning the repo, please directly download the `spirit.zip` to compile.
 
 Please make sure you have installed `cmake` and `ninja` , otherwise run the following command to install.
 ```bash
